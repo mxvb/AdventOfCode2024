@@ -91,4 +91,53 @@ class Day02Test {
         assertThat(day02.isSafe(list5)).isFalse();
         assertThat(day02.isSafe(list6)).isTrue();
     }
+    @Test
+    void testIsSafeWithExtraSteps() {
+        List<Integer> list1 = List.of(7, 6, 4, 2, 1);
+        List<Integer> list2 = List.of(1, 2, 7, 8, 9);
+        List<Integer> list3 = List.of(9, 7, 6, 2, 1);
+        List<Integer> list4 = List.of(1, 3, 2, 4, 5);
+        List<Integer> list5 = List.of(8, 6, 4, 4, 1);
+        List<Integer> list6 = List.of(1, 3, 6, 7, 9);
+
+        assertThat(day02.isSafeByRemovingOneNumber(list1)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumber(list2)).isFalse();
+        assertThat(day02.isSafeByRemovingOneNumber(list3)).isFalse();
+        assertThat(day02.isSafeByRemovingOneNumber(list4)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumber(list5)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumber(list6)).isTrue();
+    }
+    @Test
+    void testIsSafeWithExtraSteps2() {
+        List<Integer> list1 = List.of(7, 6, 4, 2, 1);
+        List<Integer> list2 = List.of(1, 2, 7, 8, 9);
+        List<Integer> list3 = List.of(9, 7, 6, 2, 1);
+        List<Integer> list4 = List.of(1, 3, 2, 4, 5);
+        List<Integer> list5 = List.of(8, 6, 4, 4, 1);
+        List<Integer> list6 = List.of(1, 3, 6, 7, 9);
+
+        assertThat(day02.isSafeByRemovingOneNumberOptimized(list1)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberOptimized(list2)).isFalse();
+        assertThat(day02.isSafeByRemovingOneNumberOptimized(list3)).isFalse();
+        assertThat(day02.isSafeByRemovingOneNumberOptimized(list4)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberOptimized(list5)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberOptimized(list6)).isTrue();
+    }
+
+    @Test
+    void testIsSafeWithExtraSteps3() {
+        List<Integer> list1 = List.of(7, 6, 4, 2, 1);
+        List<Integer> list2 = List.of(1, 2, 7, 8, 9);
+        List<Integer> list3 = List.of(9, 7, 6, 2, 1);
+        List<Integer> list4 = List.of(1, 3, 2, 4, 5);
+        List<Integer> list5 = List.of(8, 6, 4, 4, 1);
+        List<Integer> list6 = List.of(1, 3, 6, 7, 9);
+
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list1)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list2)).isFalse();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list3)).isFalse();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list4)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list5)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list6)).isTrue();
+    }
 }
