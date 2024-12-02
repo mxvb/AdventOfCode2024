@@ -31,7 +31,7 @@ public class Day02 {
                 count++;
             }
         }
-        System.out.println("count = " + count);
+        System.out.println("partOne = " + count);
 
     }
 
@@ -44,7 +44,7 @@ public class Day02 {
                 count++;
             }
         }
-        System.out.println("count = " + count);
+        System.out.println("partTwo = " + count);
     }
 
     private boolean isDifference3OrLess(int num1, int num2) {
