@@ -24,7 +24,6 @@ public class Day02 {
     }
 
     private void partOne(List<List<Integer>> input) {
-
         int count = 0;
         for (List<Integer> innerList : input) {
             if (isSafe(innerList)) {
