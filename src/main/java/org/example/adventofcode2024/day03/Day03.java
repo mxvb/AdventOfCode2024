@@ -2,71 +2,52 @@ package org.example.adventofcode2024.day03;
 
 import org.example.adventofcode2024.InputLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day03 {
 
+    private static final Pattern MULTIPLY_REGEX = Pattern.compile("mul\\(([1-9]\\d{0,2}),([1-9]\\d{0,2})\\)");
+    private static final Pattern DONT_DO_REGEX = Pattern.compile("don't\\(\\).*?do\\(\\)");
+    private static final Pattern DONT_REGEX = Pattern.compile("(don't\\(\\).*$)");
+
     public static void main(String[] args) {
         new Day03().start();
     }
 
-    public static List<String> getInput(List<String> input) {
-        String regex = "mul\\(([1-9]\\d{0,2}),([1-9]\\d{0,2})\\)";
-        List<String> mulCommands = new ArrayList<>();
-
-        for (String line : input) {
-
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(line);
-
-            // Find all matches and add to the list
-            while (matcher.find()) {
-                mulCommands.add(matcher.group());
-            }
-        }
-        return mulCommands;
-    }
-
     private void start() {
-        List<String> input = InputLoader.getInput("day03.txt");
+        List<String> lines = InputLoader.getInput("day03.txt");
+        String input = String.join("", lines);
 
         partOne(input);
-        //partTwo(listOfInts);
+        partTwo(input);
     }
 
-    private void partOne(List<String> input) {
-        System.out.println(extractedInput(input));
+    private void partOne(String input) {
+        System.out.println(calculateMultiply(input));
 
     }
 
-    public int extractedInput(List<String> input) {
-        List<String> commands = getInput(input);
-        String regex = "mul\\(([1-9]\\d{0,2}),([1-9]\\d{0,2})\\)";
-        Pattern pattern = Pattern.compile(regex);
-        // List to store extracted values
-        List<List<Integer>> extractedValues = new ArrayList<>();
-
-        // Process each command
-        for (String command : commands) {
-            Matcher matcher = pattern.matcher(command);
-            if (matcher.matches()) {
-                // Extract x and y and add to the result list
-                List<Integer> values = new ArrayList<>();
-                values.add(Integer.parseInt(matcher.group(1))); // x
-                values.add(Integer.parseInt(matcher.group(2))); // y
-                extractedValues.add(values);
-            }
+    private void partTwo(String input) {
+        Matcher dontDoMatcher = DONT_DO_REGEX.matcher(input);
+        while (dontDoMatcher.find()) {
+            String dontString = dontDoMatcher.group();
+            input = input.replace(dontString, "");
         }
-        return extractedValues.stream()
-                .mapToInt(pair -> pair.getFirst() * pair.get(1))
-                .sum();
+
+        Matcher dontMatcher = DONT_REGEX.matcher(input);
+        while (dontMatcher.find()) {
+            input = input.replace(dontMatcher.group(), "");
+        }
+
+        System.out.println(calculateMultiply(input));
     }
 
-    private void partTwo() {
-
+    public int calculateMultiply(String input) {
+        return MULTIPLY_REGEX.matcher(input).results()
+                .mapToInt(match -> Integer.parseInt(match.group(1)) * Integer.parseInt(match.group(2)))
+                .sum();
     }
 
 
