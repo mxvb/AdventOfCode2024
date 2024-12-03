@@ -40,8 +40,6 @@ public class Day02 {
         for (List<Integer> innerList : input) {
             if (isSafeByRemovingOneNumberOptimized(innerList)) {
                 count++;
-            } if (isSafe(innerList)) {
-                count++;
             }
         }
         System.out.println("partTwo = " + count);
@@ -52,8 +50,8 @@ public class Day02 {
     }
 
     public boolean isListDiffLessThan3(List<Integer> input) {
-        for (int i = 0; i < input.size() - 1; i++) {
-            if (!isDifference3OrLess(input.get(i), input.get(i + 1))) {
+        for (int i = 1; i < input.size(); i++) {
+            if (!isDifference3OrLess(input.get(i-1), input.get(i))) {
                 return false;
             }
         }
@@ -76,7 +74,7 @@ public class Day02 {
 
     public Boolean isSafeByRemovingOneNumber(List<Integer> input) {
         List<Integer> temp = new ArrayList<>(input);
-        for (int i = 0; i < input.size() - 1; i++) {
+        for (int i = 0; i < input.size(); i++) {
             int tempNumber = input.get(i);
             temp.remove(i);
             if (isSafe(temp)) {
@@ -87,8 +85,9 @@ public class Day02 {
         }
         return false;
     }
+
     public Boolean isSafeByRemovingOneNumberOptimized(List<Integer> input) {
-        for (int i = 0; i < input.size() - 1; i++) {
+        for (int i = 0; i < input.size(); i++) {
             List<Integer> temp = new ArrayList<>(input);
             temp.remove(i);
             if (isSafe(temp)) {
@@ -97,6 +96,7 @@ public class Day02 {
         }
         return false;
     }
+
     public Boolean isSafeByRemovingOneNumberWithStream(List<Integer> input) {
         return IntStream.range(0, input.size())
                 .anyMatch(i -> {

@@ -132,6 +132,8 @@ class Day02Test {
         List<Integer> list4 = List.of(1, 3, 2, 4, 5);
         List<Integer> list5 = List.of(8, 6, 4, 4, 1);
         List<Integer> list6 = List.of(1, 3, 6, 7, 9);
+        List<Integer> list7 = List.of(1, 3, 6, 7, 5);
+        List<Integer> list8 = List.of(1, 3, 6, 7, 15);
 
         assertThat(day02.isSafeByRemovingOneNumberWithStream(list1)).isTrue();
         assertThat(day02.isSafeByRemovingOneNumberWithStream(list2)).isFalse();
@@ -139,5 +141,7 @@ class Day02Test {
         assertThat(day02.isSafeByRemovingOneNumberWithStream(list4)).isTrue();
         assertThat(day02.isSafeByRemovingOneNumberWithStream(list5)).isTrue();
         assertThat(day02.isSafeByRemovingOneNumberWithStream(list6)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list7)).isTrue();
+        assertThat(day02.isSafeByRemovingOneNumberWithStream(list8)).isTrue();
     }
 }
